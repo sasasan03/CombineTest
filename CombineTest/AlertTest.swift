@@ -10,13 +10,13 @@ import SwiftUI
 enum LoginError: LocalizedError {
     case textError
     case passError
-    case unkown
+    case unknownError
     
     var errorDescription: String?{
         switch self {
         case .textError: return "テキストエラー"
         case .passError: return "パスワードエラー"
-        case .unkown: return "原因不明"
+        case .unknownError: return "原因不明"
         }
     }
 }
@@ -29,7 +29,7 @@ struct AlertTest: View {
     var body: some View {
         LoginView(showAlert: $showAlert, error: $error)
             .alert(isPresented: $showAlert, error: error) {
-                Button("承諾した"){
+                Button("あいよ！！"){
                     showAlert = false
                 }
             }
@@ -45,20 +45,27 @@ struct LoginView: View {
     
     var body: some View {
         VStack{
-            Text("ログイン")
+            Text("Login View")
+                .font(.largeTitle)
             TextField("テキスト", text: $text)
                 .textFieldStyle(.roundedBorder)
             TextField("パスワード", text: $pass)
                 .textFieldStyle(.roundedBorder)
             Button("登録"){
-                if text == ""{
+                guard text.count != 0 else {
+                    showAlert = true
                     error = .textError
-                } else if pass == "" {
-                    error = .textError
+                    return
                 }
+                guard pass.count != 0 else {
+                    showAlert = true
+                    error = .textError
+                    return
+                }
+                //...firebase ログイン処理
             }
         }
-        
+        .padding()
     }
 }
 
