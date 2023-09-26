@@ -52,11 +52,6 @@ struct LoginView: View {
             TextField("パスワード", text: $pass)
                 .textFieldStyle(.roundedBorder)
             Button("登録"){
-                guard text.count != 0 else {
-                    showAlert = true
-                    error = .textError
-                    return
-                }
                 guard pass.count != 0 else {
                     showAlert = true
                     error = .textError
