@@ -2,6 +2,74 @@ import Foundation
 import Combine
 
 
+
+let a = CurrentValueSubject<Int,Never>(3)
+let b = Just(1)
+
+let publisher = b.combineLatest(a).map { b, a  in
+    a + b
+}
+
+publisher.sink { added in
+    print(added)
+}
+
+a.send(10)
+
+//🟦Operator：
+
+
+
+
+
+
+
+//🟦Publisher：イベントを発行
+//型が時間の経過とともに一連の値を送信できることを宣言する。
+//let publisher = ["A","B","C"].publisher
+//
+////
+//publisher.sink { str in
+//    print(str)
+//}
+
+
+
+
+
+////🟦Subscriber：イベントを受け取って処理を行う
+//let subject = PassthroughSubject<String,Never>()
+//
+//subject.send("もも")
+//
+////🟡sink：
+//subject.sink { completion in
+//    print("コンプリージョン",completion)
+//} receiveValue: { str in
+//    print("バリュー",str)
+//}
+//
+//subject.send("A")
+//
+//subject.send("B")
+//
+//subject.send(completion: .finished)
+//
+//subject.send("C")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //--------------------------------------------------------------------
 //let cancellable: AnyCancellable
 //

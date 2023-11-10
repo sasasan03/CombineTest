@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 enum LoginError: LocalizedError {
     case textError
@@ -42,6 +43,8 @@ struct LoginView: View {
     @Binding var error: LoginError?
     @State private var text = ""
     @State private var pass = ""
+    @State private var textCount = 0
+    let maxmumCharactores = 10
     
     var body: some View {
         VStack{
@@ -49,6 +52,13 @@ struct LoginView: View {
                 .font(.largeTitle)
             TextField("テキスト", text: $text)
                 .textFieldStyle(.roundedBorder)
+                .onReceive(Just(text)){ inputText in
+                    if inputText.count > maxmumCharactores {
+                        text = String(inputText.prefix(maxmumCharactores))
+                    }
+                    textCount = inputText.count <= maxmumCharactores ? inputText.count : maxmumCharactores
+                }
+            Text("\(textCount)/\(maxmumCharactores)")
             TextField("パスワード", text: $pass)
                 .textFieldStyle(.roundedBorder)
             Button("登録"){
