@@ -1,22 +1,105 @@
 import Foundation
 import Combine
 
+// Publisherプロトコルに準拠するための独自のパブリッシャークラス
+struct SimplePublisher: Publisher {
+    
+    typealias Output = Int
+    typealias Failure = Never
 
+    let numbers: [Int]
 
-let a = CurrentValueSubject<Int,Never>(3)
-let b = Just(1)
-
-let publisher = b.combineLatest(a).map { b, a  in
-    a + b
+    // Subscriberに接続するためのメソッド
+    func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, Int == S.Input {
+        print("🟥receive")
+        // 配列の各要素を順に発行するシーケンスを作成
+        let sequence = numbers.enumerated().map { index, number in
+            // インデックスに遅延をつけることで、非同期的な挙動を模倣する
+            Just(number).delay(for: .seconds(index), scheduler: RunLoop.main)
+        }
+        // 作成したシーケンスをMergeManyで一つのパブリッシャーに統合
+        let merged = Publishers.MergeMany(sequence)
+        // サブスクライバーに接続
+        merged.subscribe(subscriber)
+    }
 }
 
-publisher.sink { added in
-    print(added)
-}
+// 独自のパブリッシャーを使用
+let simplePublisher = SimplePublisher(numbers: [1, 2, 3, 4, 5])
 
-a.send(10)
+// サブスクライバーを追加してコンソールに出力
+let subscription = simplePublisher
+    .sink(receiveCompletion: { completion in
+        switch completion {
+        case .finished:
+            print("Finished emitting numbers.")
+        case .failure(let error):
+            print("An error occurred: \(error)")
+        }
+    }, receiveValue: { number in
+        print(number)
+    })
 
-//🟦Operator：
+
+
+//----------------------------------------------------------------
+//⭐️sinkのサンプルコード
+let integers = (0...3)
+integers.publisher
+    .sink { print("Received \($0)") }
+
+
+// Prints:
+//  Received 0
+//  Received 1
+//  Received 2
+//  Received 3
+
+//----------------------------------------------------------------
+//⭐️mapのサンプルコード
+var cancellable = AnyCancellable({})
+let numbers = [5, 4, 3, 2, 1, 0]
+let romanNumeralDict: [Int : String] =
+   [1:"I", 2:"II", 3:"III", 4:"IV", 5:"V"]
+cancellable = numbers.publisher
+    .map { romanNumeralDict[$0] ?? "(unknown)" }
+    .sink { print("\($0)", terminator: " ") }
+
+//----------------------------------------------------------------
+//⭐️combineLatestのサンプルコード
+//var cancellable = AnyCancellable({}) //これが大切になってくる
+//
+//let pub1 = PassthroughSubject<Int, Never>()
+//let pub2 = PassthroughSubject<Int, Never>()
+//
+//cancellable = pub1
+//    .combineLatest(pub2)
+//    .sink { print("Result: \($0).") }
+//
+//pub1.send(1)//1,?　タプルを作成できない
+//pub1.send(2)//2,?　上流から値を受けとり、値を更新する
+//pub2.send(2)//2,2
+//pub1.send(3)//3,2
+//pub1.send(45)//45,2
+//pub2.send(22)//45,22
+
+//----------------------------------------------------------------
+//⭐️⭐️勉強会のサンプルコード
+//let a = CurrentValueSubject<Int,Never>(3)
+//let b = Just(1)
+//
+//let publisher = b.combineLatest(a).map { b, a  in
+//    a + b
+//}
+//
+//publisher.sink { added in
+//    print(added)
+//}
+//
+//a.send(10)
+
+//-----------------------------------------------------------おしまい
+
 
 
 
