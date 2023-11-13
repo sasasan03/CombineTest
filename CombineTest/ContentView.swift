@@ -7,12 +7,25 @@
 
 import SwiftUI
 
-struct ContentView: View {
-    var body: some View {
-        VStack {
-          AlertTest()
+class TextFieldValidator: ObservableObject {
+    @Published var text = "" {
+        didSet {
+            isIdValid = !text.isEmpty // IDが空でないことをチェックするなどの検証ロジック
         }
-        .padding()
+    }
+    @Published var isIdValid = false
+}
+
+struct ContentView: View {
+    @StateObject private var validator = TextFieldValidator()
+
+    var body: some View {
+        TextField("Enter ID", text: $validator.text)
+            .border(validator.isIdValid ? Color.green : Color.red) // 有効なら緑、無効なら赤のボーダーを表示
+            .onReceive(validator.$isIdValid) { isValid in
+                // IDの検証結果に基づいて何かアクションをする
+                print("ID is valid: \(isValid)")
+            }
     }
 }
 
