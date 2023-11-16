@@ -2,6 +2,83 @@ import Foundation
 import Combine
 import UIKit
 
+//class Temperture {
+//    var value: Int
+//    init(value: Int) {
+//        self.value = value
+//    }
+//}
+//
+//class Wether {
+//    @Published var temperture: Temperture = Temperture(value: 1)
+//}
+//
+//let wether = Wether()
+//_ = wether.$temperture
+//    .sink {
+//        print("\($0.value)")
+//    }
+//
+//wether.temperture.value = 2 //直接のアクセスは不可能
+//print("温度終了")
+
+
+
+
+
+
+//class ViewModel {
+//    var number:Int = 0
+//}
+//
+//var cancellable = Set<AnyCancellable>()
+//let viewModel = ViewModel()
+//let publisher = [1,2,3].publisher
+//publisher.assign(to: \.number, on: viewModel)
+//    .store(in: &cancellable)
+//print("🟥",viewModel.number)//３
+
+
+
+
+
+
+//class ViewModel {
+//    var number:Int = 0
+//}
+//
+//let viewModel = ViewModel()
+//let publisher = [1,2,3].publisher
+//let subscription = publisher.assign(to: \.number, on: viewModel)
+////キーパスの値型 '[Int]' をコンテキスト型 'Publishers.Sequence<[Int], Never>.Output' (別名 'Int') に変換できません。
+//print("🟥",viewModel.number)
+
+
+
+
+
+
+//var cancellables = Set<AnyCancellable>()
+//
+//let publisher = [1,2,3].publisher
+//publisher.sink(receiveCompletion: { finished in
+//    print("🟥receive：\(finished)")
+//}, receiveValue: { value in
+//    print("🟦value：\(value)")
+//}) .store(in: &cancellables)
+
+
+
+
+
+//let publisher = [1,2,3].publisher
+//let subscription = publisher.sink(receiveCompletion: { finished in
+//    print("🟥receive：\(finished)")
+//}, receiveValue: { value in
+//    print("🟦value：\(value)")
+//})
+    
+
 
 
 // Publisherプロトコルに準拠するための独自のパブリッシャークラス
