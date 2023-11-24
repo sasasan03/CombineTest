@@ -2,6 +2,215 @@ import Foundation
 import Combine
 import UIKit
 
+//３章〜〜〜〜〜〜〜〜〜〜〜〜〜〜　イベントの送信
+
+
+let publisher = Timer.publish(every: 1, on: .main, in: .common)
+
+final class Receiver {
+    var subscriptions = Set<AnyCancellable>()
+    
+    init(){
+        publisher
+            .sink { data in
+                print(data)
+            }.store(in: &subscriptions)
+    }
+}
+
+let receiver = Receiver()
+publisher.connect()
+
+
+
+//let publisher = ["🍎","🍌","🍊","🍇"].publisher
+//
+//final class Reciver {
+//    var subscription = Set<AnyCancellable>()
+//    
+//    init(){
+//        publisher
+//            .sink { completion in
+//                print(completion)
+//            } receiveValue: { value in
+//                print(value)
+//            }
+//            .store(in: &subscription)
+//    }
+//}
+//
+//let reciver = Reciver()
+
+
+
+
+
+//２章〜〜〜〜〜〜〜〜〜〜〜〜〜〜　送受信を分けてみる
+
+
+//🟥assign
+
+//let subject = PassthroughSubject<String,Never>()
+//
+//final class SomeObject {
+//    var value: String = "" {
+//        didSet {
+//            print("didSet value", value)
+//        }
+//    }
+//}
+//
+//final class Receiver {
+//    var subscription = Set<AnyCancellable>()
+//    let object = SomeObject()
+//    
+//    init(){
+//        subject
+//            .assign(to: \.value, on: object)
+//            .store(in: &subscription)
+//    }
+//    
+//}
+//
+//let receiver = Receiver()
+//subject.send("🍎")
+//subject.send("🍌")
+//subject.send("🍊")
+//subject.send("🍇")
+
+
+
+
+
+
+
+//Set型を使ってまとめて管理する
+
+//let subject = PassthroughSubject<String,Never>()
+//
+//final class Reciver {
+//    var subscription = Set<AnyCancellable>()
+//    
+//    init(){
+//        subject
+//            .sink { value in
+//                print("sub1",value)
+//            }.store(in: &subscription)
+//        subject
+//            .sink { value in
+//                print("sub2",value)
+//            }.store(in: &subscription)
+//        subject
+//            .sink { completion in
+//                print(completion)
+//            } receiveValue: { value in
+//                print("sub3",value)
+//            }.store(in: &subscription)
+//
+//    }
+//}
+//let receiver = Reciver()
+//subject.send("🍎")
+//subject.send("🍌")
+//subject.send("🍊")
+//subject.send("🍇")
+
+
+
+
+
+
+
+//let subject = PassthroughSubject<String,Never>()
+//
+//final class Reciver {
+//    let subscription1:AnyCancellable
+//    let subscription2:AnyCancellable
+//    
+//    init(){
+//        //🟦sinkの戻り値はAnyCanellable型。この型に適合したプロパティで保存する。
+//        subscription1 = subject
+//            .sink { value in
+//                print("sub1",value)
+//            }
+//        subscription2 = subject
+//            .sink(receiveValue: { value in
+//                 print("sub2", value)
+//            })
+//    }
+//}
+//let receiver = Reciver()
+//subject.send("🍎")
+//subject.send("🍌")
+//receiver.subscription1.cancel()
+//subject.send("🍊")
+//subject.send("🍇")
+
+
+
+
+//🟥値の出力を行う
+//let subject = PassthroughSubject<String,Never>()
+//
+//final class Reciver {
+//    let subscription1:AnyCancellable
+//    
+//    init(){
+//        //🟦sinkの戻り値はAnyCanellable型。この型に適合したプロパティで保存する。
+//        subscription1 = subject
+//            .sink { value in
+//                print(value)
+//            }
+//    }
+//}
+//let receiver = Reciver()
+//subject.send("sa")
+//receiver.subscription1.cancel()
+//subject.send("ko")
+//subject.send("da")
+
+
+//🟥値の出力を行える
+//let subject = PassthroughSubject<String,Never>()
+//
+//final class Reciver {
+//
+//    init(){
+//        subject
+//            .sink { value in
+//                print(value)
+//            }
+//    }
+//}
+//
+//let receiver = Reciver()
+//subject.send("sa")
+//subject.send("ko")
+//subject.send("da")
+
+
+
+
+//１章〜〜〜〜〜〜〜〜〜〜〜〜〜〜　送受信をまとめて行う
+
+//let subject = PassthroughSubject<String,Never>()
+//
+//subject.sink { completion in
+//    print("Com",completion)
+//} receiveValue: { value in
+//    print("Va",value)
+//}
+//subject.send("あ")
+//subject.send("い")
+//subject.send("う")
+//subject.send(completion: .finished)
+
+
+
+//~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
 //class Temperture {
 //    var value: Int
 //    init(value: Int) {

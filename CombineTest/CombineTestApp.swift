@@ -13,6 +13,7 @@ struct CombineTestApp: App {
         WindowGroup {
 //            ContentView()
             NavigtionLinkTest()
+//            NavigationTest2()
         }
     }
 }
