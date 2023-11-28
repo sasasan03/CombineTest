@@ -2,24 +2,139 @@ import Foundation
 import Combine
 import UIKit
 
+//-------------------------------あきおさんの動画
+
+struct Person{
+    var name: String//🟦varで宣言
+    var age: Int
+}
+
+var sako = Person(name: "sako", age: 30)
+//キーパスを使ってインスタンスの要素を取り出す。
+let nameKeyPath: WritableKeyPath<Person, String> = \Person.name
+let ageKeyPath: WritableKeyPath<Person, Int> = \Person.age
+
+sako[keyPath: nameKeyPath] = "hiro"
+sako[keyPath: ageKeyPath] = 19
+
+class ViewModel {
+    var number = 0
+}
+
+let viewModel = ViewModel()
+let publisher = [1,2,3].publisher
+
+//assignを使わない書き方
+publisher.sink { number in //🟥やりたいことは流れてきたnumberをViewModelに設定したい。
+    viewModel.number = number
+    print(viewModel.number)
+}
+//assignを使った書き方。KeyPathを使って値を流し込む。
+let subscription = publisher.assign(to: \.number, on: viewModel)
+
+
+
+
+
+
+
+
+//let aaa  = [1,2,3].publisher
+//aaa.sink { int in
+//    print(int)
+//}
+//
+//let subject = PassthroughSubject<Int,Never>()
+//
+//var set = Set<AnyCancellable>()
+//
+//set.insert(subject.sink { value in
+//    print("A",value)
+//})
+//
+//subject.send(10)
+//subject.send(20)
+//subject.send(30)
+//
+//subject.sink { value in  //管に値を送る。
+//    print("C", value)
+//}.store(in: &set) //setに対してinsertする
+
+
+
+
+
+//let subject = PassthroughSubject<Int,Never>()
+//
+////var array: [AnyCancellable] = []
+//var set = Set<AnyCancellable>()
+//
+//let aaa = subject.sink { value in
+//    print("A",value)
+//}
+//
+//set.insert(aaa)
+//set.insert(aaa)
+//
+//set.count //1
+//
+//set.insert(subject.sink { value in
+//    print("B",value)
+//})
+//
+//set.count //2
+//
+//subject.send(10)
+//
+//set.forEach{
+//    print("cancel")
+//    $0.cancel()
+//}
+//
+//subject.send(20)
+//subject.send(30)
+
+
+
+
+
+
+
+
+//let subject = PassthroughSubject<Int,Never>()
+//
+//let aaa = subject.sink { value in
+//    print("A",value)
+//}
+//
+//let bbb = subject.sink { value in
+//    print("B",value)
+//}
+//
+//subject.send(10)//A,B
+//aaa.cancel()
+//subject.send(20)//B
+//subject.send(30)//B
+
+
 //３章〜〜〜〜〜〜〜〜〜〜〜〜〜〜　イベントの送信
 
 
-let publisher = Timer.publish(every: 1, on: .main, in: .common)
-
-final class Receiver {
-    var subscriptions = Set<AnyCancellable>()
-    
-    init(){
-        publisher
-            .sink { data in
-                print(data)
-            }.store(in: &subscriptions)
-    }
-}
-
-let receiver = Receiver()
-publisher.connect()
+//let publisher = Timer.publish(every: 1, on: .main, in: .common)
+//
+//final class Receiver {
+//    var subscriptions = Set<AnyCancellable>()
+//    
+//    init(){
+//        publisher
+//            .sink { data in
+//                print(data)
+//            }.store(in: &subscriptions)
+//    }
+//}
+//
+//let receiver = Receiver()
+//publisher.connect()
 
 
 

@@ -11,9 +11,7 @@ import SwiftUI
 struct CombineTestApp: App {
     var body: some Scene {
         WindowGroup {
-//            ContentView()
-            NavigtionLinkTest()
-//            NavigationTest2()
+            ContentView2()
         }
     }
 }

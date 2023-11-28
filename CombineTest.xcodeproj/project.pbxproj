@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		696876FE2B088CB100318B3E /* NavigtionLinkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696876FD2B088CB100318B3E /* NavigtionLinkTest.swift */; };
-		696877022B0B738500318B3E /* NavigationTest2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696877012B0B738500318B3E /* NavigationTest2.swift */; };
+		696877022B0B738500318B3E /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696877012B0B738500318B3E /* ContentView2.swift */; };
 		69805E5C2A98AE0D00329AFD /* CombineTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69805E5B2A98AE0D00329AFD /* CombineTestApp.swift */; };
 		69805E5E2A98AE0D00329AFD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69805E5D2A98AE0D00329AFD /* ContentView.swift */; };
 		69805E602A98AE0E00329AFD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 69805E5F2A98AE0E00329AFD /* Assets.xcassets */; };
@@ -38,7 +38,7 @@
 
 /* Begin PBXFileReference section */
 		696876FD2B088CB100318B3E /* NavigtionLinkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigtionLinkTest.swift; sourceTree = "<group>"; };
-		696877012B0B738500318B3E /* NavigationTest2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationTest2.swift; sourceTree = "<group>"; };
+		696877012B0B738500318B3E /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
 		69805E582A98AE0D00329AFD /* CombineTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		69805E5B2A98AE0D00329AFD /* CombineTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineTestApp.swift; sourceTree = "<group>"; };
 		69805E5D2A98AE0D00329AFD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 				69805E5D2A98AE0D00329AFD /* ContentView.swift */,
 				69805E962A9CCBBA00329AFD /* AlertTest.swift */,
 				696876FD2B088CB100318B3E /* NavigtionLinkTest.swift */,
-				696877012B0B738500318B3E /* NavigationTest2.swift */,
+				696877012B0B738500318B3E /* ContentView2.swift */,
 				69805E852A98AE2700329AFD /* Combineeeeee.playground */,
 				69805E5F2A98AE0E00329AFD /* Assets.xcassets */,
 				69805E612A98AE0E00329AFD /* Preview Content */,
@@ -270,7 +270,7 @@
 			files = (
 				69805E5E2A98AE0D00329AFD /* ContentView.swift in Sources */,
 				69805E5C2A98AE0D00329AFD /* CombineTestApp.swift in Sources */,
-				696877022B0B738500318B3E /* NavigationTest2.swift in Sources */,
+				696877022B0B738500318B3E /* ContentView2.swift in Sources */,
 				69805E972A9CCBBA00329AFD /* AlertTest.swift in Sources */,
 				696876FE2B088CB100318B3E /* NavigtionLinkTest.swift in Sources */,
 			);
