@@ -2,37 +2,211 @@ import Foundation
 import Combine
 import UIKit
 
-//-------------------------------あきおさんの動画
 
-struct Person{
-    var name: String//🟦varで宣言
-    var age: Int
+
+
+
+//-------------------------------Combineを始めよう
+
+//🟥filter
+
+class Model{
+    @Published var num = 0
 }
 
-var sako = Person(name: "sako", age: 30)
-//キーパスを使ってインスタンスの要素を取り出す。
-let nameKeyPath: WritableKeyPath<Person, String> = \Person.name
-let ageKeyPath: WritableKeyPath<Person, Int> = \Person.age
-
-sako[keyPath: nameKeyPath] = "hiro"
-sako[keyPath: ageKeyPath] = 19
+let model = Model()
 
 class ViewModel {
-    var number = 0
+    var numText: String = "" {
+        didSet {
+            print("numText", numText)
+        }
+    }
 }
 
-let viewModel = ViewModel()
-let publisher = [1,2,3].publisher
-
-//assignを使わない書き方
-publisher.sink { number in //🟥やりたいことは流れてきたnumberをViewModelに設定したい。
-    viewModel.number = number
-    print(viewModel.number)
+class Receiver{
+    var set = Set<AnyCancellable>()
+    let viewModel = ViewModel()
+    
+    init(){
+        model.$num
+            .filter { num in
+                num % 2 == 0
+            }
+            .map { value in
+                String(value)
+            }
+            .assign(to: \.numText, on: viewModel)
+            .store(in: &set)
+    }
 }
-//assignを使った書き方。KeyPathを使って値を流し込む。
-let subscription = publisher.assign(to: \.number, on: viewModel)
+
+let receiver = Receiver()
+model.num = 2
+model.num = 3
+model.num = 4
+model.num = 5
+model.num = 6
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////🟥map
+//class Model{
+//    @Published var num = 1
+//}
+//
+//let model = Model()
+//
+//class ViewModel {
+//    var numText: String = "" {
+//        didSet {
+//            print("numText", numText)
+//        }
+//    }
+//}
+//
+//class Receiver{
+//    var set = Set<AnyCancellable>()
+//    let viewModel = ViewModel()
+//    
+//    init(){
+//        model.$num
+//            .map { int in
+//                String(int)
+//            }
+//            .assign(to: \.numText, on: viewModel)//AnyCancellable
+//            .store(in: &set)
+//    }
+//}
+//
+//let receiver = Receiver()
+//model.num = 2
+//model.num = 3
+//model.num = 4
+
+
+
+
+
+
+
+
+
+
+
+//🟥@Published
+
+//class Sender {
+//    @Published var event = "りんご"
+//}
+//
+//let sender = Sender()
+//
+//class Receiver {
+//    var set = Set<AnyCancellable>()
+//    
+//    init(){
+//        sender.$event
+//            .sink { value in
+//                print(value)
+//            }
+//            .store(in: &set)
+//    }
+//}
+//
+//let receiver = Receiver()
+//sender.event = "もも"
+//sender.event = "ブドウ"
+
+
+
+
+
+
+
+
+
+
+
+
+
+//🟥Subjectの型消去
+//let subject = PassthroughSubject<Int,Never>()
+//let publisher = subject.eraseToAnyPublisher()
+//
+//class Receiver{
+//    var set = Set<AnyCancellable>()
+//    
+//    init(){
+//        publisher
+//            .sink { value in
+//                print(value)
+//            }.store(in: &set)
+//    }
+//}
+//
+//let receiver = Receiver()
+//subject.send(10)
+//subject.send(20)
+//subject.send(30)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//🟥Subject
+
+
+
+
+//let subject = CurrentValueSubject<String, Never>("A")
+//let subject = PassthroughSubject<String, Never>()
+//
+//class Receiver {
+//    var set = Set<AnyCancellable>()
+//    
+//    init() {
+//        subject
+//            .sink { value in
+//                print("Received value:", value)
+//            }
+//            .store(in: &set)
+//    }
+//}
+//
+//let receiver = Receiver()
+//subject.send("あ")
+//subject.send("い")
+//subject.send("う")
+//subject.send("え")
+//subject.send("お")
+//print("Current value:", subject)
 
 
 
@@ -40,15 +214,14 @@ let subscription = publisher.assign(to: \.number, on: viewModel)
 
 
 //let aaa  = [1,2,3].publisher
-//aaa.sink { int in
-//    print(int)
-//}
 //
 //let subject = PassthroughSubject<Int,Never>()
 //
 //var set = Set<AnyCancellable>()
 //
-//set.insert(subject.sink { value in
+//
+//set.insert(
+//    subject.sink { value in
 //    print("A",value)
 //})
 //
@@ -59,6 +232,166 @@ let subscription = publisher.assign(to: \.number, on: viewModel)
 //subject.sink { value in  //管に値を送る。
 //    print("C", value)
 //}.store(in: &set) //setに対してinsertする
+
+
+
+
+
+
+
+//🟥URLSession
+//let url = URL(string: "https://qiita.com/api/v2/items?page=1")!
+//let publisher = URLSession.shared.dataTaskPublisher(for: url)
+//
+//class Receiver {
+//    var set  = Set<AnyCancellable>()
+//    
+//    init(){
+//        publisher
+//            .sink { completion in
+//                switch completion {
+//                case .finished:
+//                    print("##Fetch Completion")
+//                case .failure(let error):
+//                    print("##Received Error", error)
+//                }
+//            } receiveValue: { data, response in
+//                print("##data", data)
+//                print("##response", response)
+//            } .store(in: &set)
+//    }
+//}
+//
+//let receiver = Receiver()
+
+
+
+
+
+
+
+
+//🟥Notification
+//let myNotification = Notification.Name("MyNotification")
+//let publisher = NotificationCenter.default.publisher(for: myNotification)
+//
+//class Receiver {
+//    var subscription = Set<AnyCancellable>()
+//    
+//    init(){
+//        publisher
+//            .sink { notification in
+//                print(notification)
+//            }.store(in: &subscription)
+//    }
+//}
+//
+//let receiver = Receiver()
+//NotificationCenter.default.post(Notification(name: myNotification))//どこから情報を受け取るのか明示する。
+//出力：
+//name = MyNotification, object = nil, userInfo = nil
+
+
+
+
+
+
+//🟥Timer
+//let publisher = Timer.publish(every: 1, on: .main, in: .common)
+//
+//class Receiver{
+//    var subscription = Set<AnyCancellable>()
+//    
+//    init(){
+//        publisher
+//            .sink { data in
+//                print(data)
+//            }.store(in: &subscription)
+//    }
+//}
+//let receiver = Receiver()
+//publisher.connect()
+
+
+//-------------------------------あきおさんの動画11/15
+
+
+//var set = Set<AnyCancellable>() //重複させずにルールを解除させるためSetを使用。
+//let subject = PassthroughSubject<Int,Never>() //管
+//
+//let aaa: AnyCancellable = subject.sink { number in
+//    print("A",number)
+//}
+//set.insert(aaa)//setに追加する
+//
+//set.insert(//上はこんな感じでinsertされている
+//    subject.sink { number in
+//        print("B", number)
+//    }
+//)
+//
+//subject.sink { number in //storeを使うことでinsertする必要がなくなった。
+//    print("C",number)
+//}.store(in: &set)//いけてる書き方っす
+//
+//set.count
+//
+//subject.send(10) //管に値を流し込む
+//subject.send(20)
+//subject.send(30)
+//
+//set.forEach{
+//    $0.cancel()
+//}
+//
+//subject.send(40)//キャンセルが呼ばれているため反映されない。
+//
+//
+//
+//
+//
+//
+//
+//
+//struct Person{
+//    var name: String//🟦varで宣言
+//    var age: Int
+//}
+//
+//var sako = Person(name: "sako", age: 30)
+////キーパスを使ってインスタンスの要素を取り出す。
+//let nameKeyPath: WritableKeyPath<Person, String> = \Person.name
+//let ageKeyPath: WritableKeyPath<Person, Int> = \Person.age
+//
+//sako[keyPath: nameKeyPath] = "hiro"
+//sako[keyPath: ageKeyPath] = 19
+//
+//class ViewModel {
+//    var number = 0
+//}
+//
+//let viewModel = ViewModel()
+//let publisher = [1,2,3].publisher
+//
+////assignを使わない書き方
+//publisher.sink { number in //🟥やりたいことは流れてきたnumberをViewModelに設定したい。
+//    viewModel.number = number
+//    print(viewModel.number)
+//}
+////assignを使った書き方。KeyPathを使って値を流し込む。
+//let subscription = publisher.assign(to: \.number, on: viewModel)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -164,7 +497,7 @@ let subscription = publisher.assign(to: \.number, on: viewModel)
 
 
 //🟥assign
-
+////
 //let subject = PassthroughSubject<String,Never>()
 //
 //final class SomeObject {
@@ -239,27 +572,22 @@ let subscription = publisher.assign(to: \.number, on: viewModel)
 //let subject = PassthroughSubject<String,Never>()
 //
 //final class Reciver {
-//    let subscription1:AnyCancellable
-//    let subscription2:AnyCancellable
-//    
+//    var subscription = Set<AnyCancellable>()
+//
 //    init(){
-//        //🟦sinkの戻り値はAnyCanellable型。この型に適合したプロパティで保存する。
-//        subscription1 = subject
-//            .sink { value in
-//                print("sub1",value)
-//            }
-//        subscription2 = subject
-//            .sink(receiveValue: { value in
-//                 print("sub2", value)
-//            })
+//        subject.sink { value in
+//                print(value)
+//        }.store(in: &subscription)
 //    }
 //}
 //let receiver = Reciver()
-//subject.send("🍎")
-//subject.send("🍌")
-//receiver.subscription1.cancel()
-//subject.send("🍊")
-//subject.send("🍇")
+//subject.send("りんご")
+//subject.send("バナナ")
+//receiver.subscription.forEach{
+//    $0.cancel()
+//}
+//subject.send("オレンジ")
+//subject.send("ブドウ")
 
 
 
@@ -268,21 +596,19 @@ let subscription = publisher.assign(to: \.number, on: viewModel)
 //let subject = PassthroughSubject<String,Never>()
 //
 //final class Reciver {
-//    let subscription1:AnyCancellable
-//    
+//    let subscription:AnyCancellable
 //    init(){
-//        //🟦sinkの戻り値はAnyCanellable型。この型に適合したプロパティで保存する。
-//        subscription1 = subject
+//        subscription = subject
 //            .sink { value in
 //                print(value)
 //            }
 //    }
 //}
 //let receiver = Reciver()
-//subject.send("sa")
-//receiver.subscription1.cancel()
-//subject.send("ko")
-//subject.send("da")
+//subject.send("🍎")
+//subject.send("🍌")
+//subject.send("🍊")
+//subject.send("🍇")
 
 
 //🟥値の出力を行える
