@@ -17,6 +17,8 @@
 		69805E772A98AE0F00329AFD /* CombineTestUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69805E762A98AE0F00329AFD /* CombineTestUITests.swift */; };
 		69805E792A98AE0F00329AFD /* CombineTestUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69805E782A98AE0F00329AFD /* CombineTestUITestsLaunchTests.swift */; };
 		69805E972A9CCBBA00329AFD /* AlertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69805E962A9CCBBA00329AFD /* AlertTest.swift */; };
+		69D8F3E42B1DEC6D00B24D4E /* CombineTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E32B1DEC6D00B24D4E /* CombineTestView.swift */; };
+		69D8F3E82B1F00BB00B24D4E /* TodoWithCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E72B1F00BB00B24D4E /* TodoWithCombine.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,8 @@
 		69805E782A98AE0F00329AFD /* CombineTestUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineTestUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		69805E852A98AE2700329AFD /* Combineeeeee.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = Combineeeeee.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		69805E962A9CCBBA00329AFD /* AlertTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTest.swift; sourceTree = "<group>"; };
+		69D8F3E32B1DEC6D00B24D4E /* CombineTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineTestView.swift; sourceTree = "<group>"; };
+		69D8F3E72B1F00BB00B24D4E /* TodoWithCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoWithCombine.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +110,8 @@
 				69805E962A9CCBBA00329AFD /* AlertTest.swift */,
 				696876FD2B088CB100318B3E /* NavigtionLinkTest.swift */,
 				696877012B0B738500318B3E /* ContentView2.swift */,
+				69D8F3E32B1DEC6D00B24D4E /* CombineTestView.swift */,
+				69D8F3E72B1F00BB00B24D4E /* TodoWithCombine.swift */,
 				69805E852A98AE2700329AFD /* Combineeeeee.playground */,
 				69805E5F2A98AE0E00329AFD /* Assets.xcassets */,
 				69805E612A98AE0E00329AFD /* Preview Content */,
@@ -268,8 +274,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D8F3E82B1F00BB00B24D4E /* TodoWithCombine.swift in Sources */,
 				69805E5E2A98AE0D00329AFD /* ContentView.swift in Sources */,
 				69805E5C2A98AE0D00329AFD /* CombineTestApp.swift in Sources */,
+				69D8F3E42B1DEC6D00B24D4E /* CombineTestView.swift in Sources */,
 				696877022B0B738500318B3E /* ContentView2.swift in Sources */,
 				69805E972A9CCBBA00329AFD /* AlertTest.swift in Sources */,
 				696876FE2B088CB100318B3E /* NavigtionLinkTest.swift in Sources */,

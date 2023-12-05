@@ -3,50 +3,141 @@ import Combine
 import UIKit
 
 
-
-
-
 //-------------------------------Combineを始めよう
+//🟥combineLatest
 
-//🟥filter
-
-class Model{
-    @Published var num = 0
+class Model {
+    @Published var num1 = 0
+    @Published var num2 = 10
 }
 
 let model = Model()
 
 class ViewModel {
-    var numText: String = "" {
+    var numText = ("","") {
         didSet {
             print("numText", numText)
         }
     }
 }
 
-class Receiver{
+class Receiver {
     var set = Set<AnyCancellable>()
-    let viewModel = ViewModel()
+    let vm = ViewModel()
     
     init(){
-        model.$num
-            .filter { num in
-                num % 2 == 0
+        model.$num1
+            .combineLatest(model.$num2)//$はパブリッシャーの合図
+            .map{ value1, value2 in
+                (String(value1),String(value2))
             }
-            .map { value in
-                String(value)
-            }
-            .assign(to: \.numText, on: viewModel)
-            .store(in: &set)
+            .assign(to: \.numText, on: vm)
+//            .store(in: &set)
     }
 }
 
 let receiver = Receiver()
-model.num = 2
-model.num = 3
-model.num = 4
-model.num = 5
-model.num = 6
+model.num1 = 1
+model.num1 = 2
+model.num1 = 3
+model.num2 = 20
+model.num2 = 30
+model.num2 = 40
+
+
+//0-----------------------------------------------
+
+
+//class Model {
+//    var num1 = PassthroughSubject<Int,Never>()
+//    var num2 = PassthroughSubject<Int,Never>()
+//}
+//
+//let model = Model()
+//
+//class ViewModel {
+//    var numText = ("","") {
+//        didSet {
+//            print("numText", numText)
+//        }
+//    }
+//}
+//
+//class Receiver {
+//    var set = Set<AnyCancellable>()
+//    let vm = ViewModel()
+//    
+//    init(){
+//        model.num1
+//            .combineLatest(model.num2)//$はパブリッシャーの合図
+//            .map{ value1, value2 in
+//                (String(value1),String(value2))
+//            }
+//            .assign(to: \.numText, on: vm)
+//            .store(in: &set)
+//    }
+//}
+//
+//let receiver = Receiver()
+//model.num1.send(1)
+//model.num1.send(2)
+//model.num1.send(3)
+//model.num2.send(20)
+//model.num2.send(30)
+//model.num2.send(40)
+
+
+
+
+
+
+
+
+
+
+
+//---------------------------------------------------
+
+
+//🟥filter
+
+//class Model{
+//    @Published var num = 0
+//}
+//
+//let model = Model()
+//
+//class ViewModel {
+//    var numText: String = "" {
+//        didSet {
+//            print("numText", numText)
+//        }
+//    }
+//}
+//
+//class Receiver{
+//    var set = Set<AnyCancellable>()
+//    let viewModel = ViewModel()
+//    
+//    init(){
+//        model.$num
+//            .filter { num in
+//                num % 2 == 0
+//            }
+//            .map { value in
+//                String(value)
+//            }
+//            .assign(to: \.numText, on: viewModel)
+//            .store(in: &set)
+//    }
+//}
+//
+//let receiver = Receiver()
+//model.num = 2
+//model.num = 3
+//model.num = 4
+//model.num = 5
+//model.num = 6
 
 
 
@@ -213,8 +304,7 @@ model.num = 6
 
 
 
-//let aaa  = [1,2,3].publisher
-//
+
 //let subject = PassthroughSubject<Int,Never>()
 //
 //var set = Set<AnyCancellable>()
