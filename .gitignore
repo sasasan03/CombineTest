@@ -1,3 +1,5 @@
 UserInterfaceState.xcuserstate
 CombineTestTests
 CombineTestUITests
+# Swift Playground
+*.playground/
