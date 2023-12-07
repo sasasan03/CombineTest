@@ -19,6 +19,7 @@
 		69805E972A9CCBBA00329AFD /* AlertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69805E962A9CCBBA00329AFD /* AlertTest.swift */; };
 		69D8F3E42B1DEC6D00B24D4E /* CombineTestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E32B1DEC6D00B24D4E /* CombineTestView.swift */; };
 		69D8F3E82B1F00BB00B24D4E /* TodoWithCombine.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3E72B1F00BB00B24D4E /* TodoWithCombine.swift */; };
+		69D8F3F02B2088F300B24D4E /* PublishTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69D8F3EF2B2088F300B24D4E /* PublishTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		69805E962A9CCBBA00329AFD /* AlertTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTest.swift; sourceTree = "<group>"; };
 		69D8F3E32B1DEC6D00B24D4E /* CombineTestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CombineTestView.swift; sourceTree = "<group>"; };
 		69D8F3E72B1F00BB00B24D4E /* TodoWithCombine.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoWithCombine.swift; sourceTree = "<group>"; };
+		69D8F3EF2B2088F300B24D4E /* PublishTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				696877012B0B738500318B3E /* ContentView2.swift */,
 				69D8F3E32B1DEC6D00B24D4E /* CombineTestView.swift */,
 				69D8F3E72B1F00BB00B24D4E /* TodoWithCombine.swift */,
+				69D8F3EF2B2088F300B24D4E /* PublishTest.swift */,
 				69805E852A98AE2700329AFD /* Combineeeeee.playground */,
 				69805E5F2A98AE0E00329AFD /* Assets.xcassets */,
 				69805E612A98AE0E00329AFD /* Preview Content */,
@@ -277,6 +280,7 @@
 				69D8F3E82B1F00BB00B24D4E /* TodoWithCombine.swift in Sources */,
 				69805E5E2A98AE0D00329AFD /* ContentView.swift in Sources */,
 				69805E5C2A98AE0D00329AFD /* CombineTestApp.swift in Sources */,
+				69D8F3F02B2088F300B24D4E /* PublishTest.swift in Sources */,
 				69D8F3E42B1DEC6D00B24D4E /* CombineTestView.swift in Sources */,
 				696877022B0B738500318B3E /* ContentView2.swift in Sources */,
 				69805E972A9CCBBA00329AFD /* AlertTest.swift in Sources */,

@@ -12,7 +12,9 @@ struct CombineTestApp: App {
     var body: some Scene {
         WindowGroup {
 //            ContentView2()
-            CombineTestView()
+//            CombineTestView()
+//            TodoWithCombine()
+            PublishTest()
         }
     }
 }

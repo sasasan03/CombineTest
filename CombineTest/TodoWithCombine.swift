@@ -8,31 +8,43 @@
 import SwiftUI
 import Combine
 
-class TodoModel{
-    @Published var todos: [String] = []
-}
+//class TodoViewModel: ObservableObject{
+//    @Published var todos: [String] = ["AAA"]
+//    
+//    private var set = Set<AnyCancellable>()
+//    
+//    deinit {
+//        set.forEach{ element in
+//            element.cancel()
+//        }
+//    }
+//    
+//    func appendText(_ todo: String){
+//        todos
+//    }
+//    
+//}
 
 struct TodoWithCombine: View {
     
-    @State private var text = ""
-    let set = Set<AnyCancellable>()
+//    @StateObject private var vm = TodoViewModel()
+//    @State private var text = ""
     
     var body: some View {
-        VStack{
-            List{
-                
-            }
-            HStack{
-                TextField("入力", text: $text)
-                Button("TODOに追加"){
-                    
-                }
-            }
-            
-        }
-        
-        
-        Text("Hello, World!")
+        Text("aa")
+//        VStack{
+//            List(vm.todos, id: \.self){ todo in
+//                Text(todo)
+//            }
+//            HStack{
+//                TextField("入力", text: $text)
+//                    .textFieldStyle(.roundedBorder)
+//                Button("TODOに追加"){
+//                    vm.appendText(text)
+//                }.padding()
+//            }
+//            
+//        }
     }
 }
 
