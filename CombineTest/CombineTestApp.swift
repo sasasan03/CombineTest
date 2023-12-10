@@ -14,7 +14,8 @@ struct CombineTestApp: App {
 //            ContentView2()
 //            CombineTestView()
 //            TodoWithCombine()
-            PublishTest()
+//            PublishTest()
+            TodoWithCombine()
         }
     }
 }

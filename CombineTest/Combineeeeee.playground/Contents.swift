@@ -1,48 +1,177 @@
 import Foundation
 import Combine
 import UIKit
+import PlaygroundSupport
 
+
+
+
+//class Counter: ObservableObject {
+//    @Published var count: Int
+//    
+//    init(_ initialCount: Int) {
+//        self.count = initialCount
+//    }
+//    
+//    func increment() {
+//        count += 1
+//    }
+//    
+//    func decrement() {
+//        count -= 1
+//    }
+//}
+//
+//struct Counters: View {
+//    @State var useFirstCounter = true
+//    @StateObject var counter1 = Counter(0)
+//    @StateObject var counter2 = Counter(0)
+//    
+//    var body: some View {
+//        VStack {
+//            Counter1(counter: useFirstCounter ? counter1 : counter2)
+//            Counter2(counter: useFirstCounter ? counter1 : counter2)
+//            Button("Switch Counter") {
+//                useFirstCounter.toggle()
+//            }
+//        }
+//    }
+//}
+//
+//// The Counter in this view will always be the one passed in from the parent view.
+//struct Counter1: View {
+//    @ObservedObject var counter: Counter
+//    
+//    init(counter: Counter) {
+//        self.counter = counter
+//    }
+//    
+//    var body: some View {
+//        HStack {
+//            Button { counter.decrement() } label: { Image(systemName: "minus.circle") }
+//            Text("\(counter.count)")
+//            Button { counter.increment() } label: { Image(systemName: "plus.circle") }
+//        }
+//    }
+//}
+//
+//// The Counter in this view will initially be set to the one passed in from the parent,
+//// but in later view updates, this will keep using that same instance every time, even
+//// if the parent later passes in a different Counter.
+//struct Counter2: View {
+//    @StateObject var counter: Counter
+//    
+//    init(counter: Counter) {
+//        self._counter = StateObject(wrappedValue: counter)
+//    }
+//    
+//    var body: some View {
+//        HStack {
+//            Button { counter.decrement() } label: { Image(systemName: "minus.circle") }
+//            Text("\(counter.count)")
+//            Button { counter.increment() } label: { Image(systemName: "plus.circle") }
+//        }
+//    }
+//}
+//
+//PlaygroundPage.current.setLiveView(Counters())
 
 //-------------------------------Combineを始めよう
+
+class Model{
+     @Published var num = 1
+ }
+ 
+ let model = Model()//🟥クラス内でインスタンス化させたい
+ 
+ class ViewModel {
+     var numText: String = "" {
+         didSet {
+             print("numText", numText)
+         }
+     }
+ }
+ 
+ class Receiver{
+     var set = Set<AnyCancellable>()
+     let viewModel = ViewModel()
+     
+     init(){
+         model.$num
+             .map { int in
+                 String(int)
+             }
+             .assign(to: \.numText, on: viewModel)
+             .store(in: &set)
+     }
+ }
+ 
+ let receiver = Receiver()
+ model.num = 2 //"2"
+ model.num = 3 //"3"
+ model.num = 4 //"4"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //🟥combineLatest
-
-class Model {
-    @Published var num1 = 0
-    @Published var num2 = 10
-}
-
-let model = Model()
-
-class ViewModel {
-    var numText = ("","") {
-        didSet {
-            print("numText", numText)
-        }
-    }
-}
-
-class Receiver {
-    var set = Set<AnyCancellable>()
-    let vm = ViewModel()
-    
-    init(){
-        model.$num1
-            .combineLatest(model.$num2)//$はパブリッシャーの合図
-            .map{ value1, value2 in
-                (String(value1),String(value2))
-            }
-            .assign(to: \.numText, on: vm)
-//            .store(in: &set)
-    }
-}
-
-let receiver = Receiver()
-model.num1 = 1
-model.num1 = 2
-model.num1 = 3
-model.num2 = 20
-model.num2 = 30
-model.num2 = 40
+//
+//class Model {
+//    @Published var num1 = 0
+//    @Published var num2 = 10
+//}
+//
+//let model = Model()
+//
+//class ViewModel {
+//    var numText = ("","") {
+//        didSet {
+//            print("numText", numText)
+//        }
+//    }
+//}
+//
+//class Receiver {
+//    var set = Set<AnyCancellable>()
+//    let vm = ViewModel()
+//    
+//    init(){
+//        model.$num1
+//            .combineLatest(model.$num2)//$はパブリッシャーの合図
+//            .map{ value1, value2 in
+//                (String(value1),String(value2))
+//            }
+//            .assign(to: \.numText, on: vm)
+////            .store(in: &set)
+//    }
+//}
+//
+//let receiver = Receiver()
+//model.num1 = 1
+//model.num1 = 2
+//model.num1 = 3
+//model.num2 = 20
+//model.num2 = 30
+//model.num2 = 40
 
 
 //0-----------------------------------------------
