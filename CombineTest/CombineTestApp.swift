@@ -15,7 +15,8 @@ struct CombineTestApp: App {
 //            CombineTestView()
 //            TodoWithCombine()
 //            PublishTest()
-            TodoWithCombine()
+//            TodoWithCombine()
+            NextViewTest()
         }
     }
 }

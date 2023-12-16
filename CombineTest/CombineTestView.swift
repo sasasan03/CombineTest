@@ -22,7 +22,6 @@ class Model {
 //}
 
 
-
 struct CombineTestView: View {
     var subject = PassthroughSubject<Int,Never>()
     @State var set = Set<AnyCancellable>()

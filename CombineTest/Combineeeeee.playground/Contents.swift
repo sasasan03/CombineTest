@@ -1,9 +1,127 @@
 import Foundation
 import Combine
 import UIKit
+import SwiftUI
 import PlaygroundSupport
 
+var set = Set<AnyCancellable>()
+let subject = PassthroughSubject<Int,Never>()
 
+
+let subjectA = subject.sink { number in
+    print("A",number)
+}
+
+let subjectB = subject.sink { number in
+    print("B",number)
+}
+
+let subjectC = subject.sink { number in
+    print("C",number)
+}
+
+set.insert(subjectA)
+set.insert(subjectB)
+set.insert(subjectC)
+set.count
+subject.send(10)
+subject.send(20)
+subject.send(30)
+set.forEach{
+    $0.cancel()
+}
+subject.send(40) //出力されない
+
+
+set.insert(
+    subject.sink { number in
+        print("B", number)
+    }
+)
+
+subject.sink { number in
+    print("C",number)
+}.store(in: &set)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//let subject = PassthroughSubject<Int,Never>()
+//
+//let subjectA = subject.sink { value in
+//    print("subjectA：",value)
+//}
+//
+//subject.send(1)// A 1
+//subjectA.cancel()
+//subject.send(2)// 出力されない
+//subject.send(3)// 出力されない
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//let subject = PassthroughSubject<Int,Never>()
+//
+//let subjectA = subject.sink { value in
+//    print("subjectA：",value)
+//}
+//
+//let subjectB = subject.sink { value in
+//    print("subjectB：",value)
+//}
+//
+//subject.send(1)// B 1,A 1
+//subjectA.cancel()
+//subject.send(2)//B 2
+//subject.send(3)//B 3
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//let subject = PassthroughSubject<Int,Never>()
+//
+//subject.sink { num in
+//    print("PassthroughSubjectgaが受け取った値は：\(num)")
+//}
+//
+//subject.send(1)
+//subject.send(2)
+//subject.send(3)
+
+//値を受けとっったときに実行されるクロージャ .sink
 
 
 //class Counter: ObservableObject {
