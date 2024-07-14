@@ -13,7 +13,8 @@ struct ValidationTest: View {
     
     
     var body: some View {
-        Text("Hello, World!")
+        Text("プルリクエストのために作成")
+        Text("プッシュ後に追加したText")
     }
 }
 
