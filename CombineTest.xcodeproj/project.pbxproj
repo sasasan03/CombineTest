@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		696564A62B2B138100FD8CEB /* NextViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696564A52B2B138100FD8CEB /* NextViewTest.swift */; };
+		696564EC2B37F0C100FD8CEB /* ValidationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696564EB2B37F0C100FD8CEB /* ValidationTest.swift */; };
 		696876FE2B088CB100318B3E /* NavigtionLinkTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696876FD2B088CB100318B3E /* NavigtionLinkTest.swift */; };
 		696877022B0B738500318B3E /* ContentView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696877012B0B738500318B3E /* ContentView2.swift */; };
 		69805E5C2A98AE0D00329AFD /* CombineTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69805E5B2A98AE0D00329AFD /* CombineTestApp.swift */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		696564A52B2B138100FD8CEB /* NextViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextViewTest.swift; sourceTree = "<group>"; };
+		696564EB2B37F0C100FD8CEB /* ValidationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidationTest.swift; sourceTree = "<group>"; };
 		696876FD2B088CB100318B3E /* NavigtionLinkTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigtionLinkTest.swift; sourceTree = "<group>"; };
 		696877012B0B738500318B3E /* ContentView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView2.swift; sourceTree = "<group>"; };
 		69805E582A98AE0D00329AFD /* CombineTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CombineTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +120,7 @@
 				69D8F3E72B1F00BB00B24D4E /* TodoWithCombine.swift */,
 				69D8F3EF2B2088F300B24D4E /* PublishTest.swift */,
 				696564A52B2B138100FD8CEB /* NextViewTest.swift */,
+				696564EB2B37F0C100FD8CEB /* ValidationTest.swift */,
 				69805E852A98AE2700329AFD /* Combineeeeee.playground */,
 				69805E5F2A98AE0E00329AFD /* Assets.xcassets */,
 				69805E612A98AE0E00329AFD /* Preview Content */,
@@ -286,6 +289,7 @@
 				69D8F3F02B2088F300B24D4E /* PublishTest.swift in Sources */,
 				69D8F3E42B1DEC6D00B24D4E /* CombineTestView.swift in Sources */,
 				696564A62B2B138100FD8CEB /* NextViewTest.swift in Sources */,
+				696564EC2B37F0C100FD8CEB /* ValidationTest.swift in Sources */,
 				696877022B0B738500318B3E /* ContentView2.swift in Sources */,
 				69805E972A9CCBBA00329AFD /* AlertTest.swift in Sources */,
 				696876FE2B088CB100318B3E /* NavigtionLinkTest.swift in Sources */,
