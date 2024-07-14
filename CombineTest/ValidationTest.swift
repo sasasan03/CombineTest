@@ -14,6 +14,7 @@ struct ValidationTest: View {
     
     var body: some View {
         Text("プルリクエストのために作成")
+        Text("プッシュ後に追加したText")
     }
 }
 
